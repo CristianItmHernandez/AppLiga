@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-debug-68:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-main-70:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-debug-68:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-main-70:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-debug-68:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-main-70:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.hograna.liga.app-debug-68:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.hograna.liga.app-main-70:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-debug-68:\\xml_file_provider_paths.xml.flat",
+        "source": "C:\\Users\\Cristian\\.gradle\\daemon\\8.10.2\\com.hograna.liga.app-main-70:\\xml\\file_provider_paths.xml"
+    }
+]

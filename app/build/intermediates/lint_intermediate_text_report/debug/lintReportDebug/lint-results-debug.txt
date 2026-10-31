@@ -1,0 +1,379 @@
+D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\lint-cache\lintReportDebug\migrated-jars\androidx.navigation.common.lint.NavigationCommonIssueRegistry-5daa12651be0734e..jar: Warning: Library lint checks out of date;
+these checks will be skipped!
+
+Lint found an issue registry (androidx.navigation.common.lint.NavigationCommonIssueRegistry)
+which was compiled against an older version of lint
+than this one. This is usually fine, but not in this
+case; some basic verification shows that the lint
+check jar references (for example) the following API
+which is no longer valid in this version of lint:
+org.jetbrains.kotlin.analysis.api.lifetime.KaDefaultLifetimeTokenProvider#Companion
+(Referenced from androidx/navigation/lint/UtilKt.class)
+
+Therefore, this lint check library is not included
+in analysis. This affects the following lint checks:
+EmptyNavDeepLink,WrongStartDestinationType,MissingSerializableAnnotation,MissingKeepAnnotation
+
+Recompile the checks against the latest version, or if
+this is a check bundled with a third-party library, see
+if there is a more recent version available.
+
+Version of Lint API this lint check is using is 14.
+The Lint API version currently running is 16 (8.7+). [ObsoleteLintCustomCheck]
+D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\lint-cache\lintReportDebug\migrated-jars\androidx.navigation.compose.lint.NavigationComposeIssueRegistry-598b224f0ce2f9f2..jar: Warning: Library lint checks out of date;
+these checks will be skipped!
+
+Lint found an issue registry (androidx.navigation.compose.lint.NavigationComposeIssueRegistry)
+which was compiled against an older version of lint
+than this one. This is usually fine, but not in this
+case; some basic verification shows that the lint
+check jar references (for example) the following API
+which is no longer valid in this version of lint:
+org.jetbrains.kotlin.analysis.api.lifetime.KaDefaultLifetimeTokenProvider#Companion
+(Referenced from androidx/navigation/lint/UtilKt.class)
+
+Therefore, this lint check library is not included
+in analysis. This affects the following lint checks:
+ComposableDestinationInComposeScope
+ComposableNavGraphInComposeScope
+UnrememberedGetBackStackEntry
+WrongStartDestinationType
+MissingKeepAnnotation
+MissingSerializableAnnotation
+
+Recompile the checks against the latest version, or if
+this is a check bundled with a third-party library, see
+if there is a more recent version available.
+
+Version of Lint API this lint check is using is 14.
+The Lint API version currently running is 16 (8.7+). [ObsoleteLintCustomCheck]
+D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\lint-cache\lintReportDebug\migrated-jars\androidx.navigation.runtime.lint.NavigationRuntimeIssueRegistry-a8fea42aedb9bdb3..jar: Warning: Library lint checks out of date;
+these checks will be skipped!
+
+Lint found an issue registry (androidx.navigation.runtime.lint.NavigationRuntimeIssueRegistry)
+which was compiled against an older version of lint
+than this one. This is usually fine, but not in this
+case; some basic verification shows that the lint
+check jar references (for example) the following API
+which is no longer valid in this version of lint:
+org.jetbrains.kotlin.analysis.api.lifetime.KaDefaultLifetimeTokenProvider#Companion
+(Referenced from androidx/navigation/lint/UtilKt.class)
+
+Therefore, this lint check library is not included
+in analysis. This affects the following lint checks:
+DeepLinkInActivityDestination,WrongStartDestinationType,WrongNavigateRouteType,MissingKeepAnnotation,MissingSerializableAnnotation
+
+Recompile the checks against the latest version, or if
+this is a check bundled with a third-party library, see
+if there is a more recent version available.
+
+Version of Lint API this lint check is using is 14.
+The Lint API version currently running is 16 (8.7+). [ObsoleteLintCustomCheck]
+
+   Explanation for issues of type "ObsoleteLintCustomCheck":
+   Lint can be extended with "custom checks": additional checks implemented by
+   developers and libraries to for example enforce specific API usages
+   required by a library or a company coding style guideline.
+
+   The Lint APIs are not yet stable, so these checks may either cause a
+   performance degradation, or stop working, or provide wrong results.
+
+   This warning flags custom lint checks that are found to be using obsolete
+   APIs and will need to be updated to run in the current lint environment.
+
+   It may also flag issues found to be using a newer version of the API,
+   meaning that you need to use a newer version of lint (or Android Studio or
+   Gradle plugin etc) to work with these checks.
+
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\AndroidManifest.xml:5: Warning: Your app is currently not handling Selected Photos Access introduced in Android 14+ [SelectedPhotoAccess]
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SelectedPhotoAccess":
+   Selected Photo Access is a new ability for users to share partial access to
+   their photo library when apps request access to their device storage on
+   Android 14+.
+
+   Instead of letting the system manage the selection lifecycle, we recommend
+   you adapt your app to handle partial access to the photo library.
+
+   https://developer.android.com/about/versions/14/changes/partial-photo-video-access
+
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.7.2 is available: 9.5.0. (There is also a newer version of 8.7.𝑥 available, if upgrading to 9.5.0 is difficult: 8.7.3) [AndroidGradlePluginVersion]
+agp = "8.7.2"
+      ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.7.2 is available: 9.5.0. (There is also a newer version of 8.7.𝑥 available, if upgrading to 9.5.0 is difficult: 8.7.3) [AndroidGradlePluginVersion]
+agp = "8.7.2"
+      ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:2: Warning: A newer version of com.android.application than 8.7.2 is available: 9.5.0. (There is also a newer version of 8.7.𝑥 available, if upgrading to 9.5.0 is difficult: 8.7.3) [AndroidGradlePluginVersion]
+agp = "8.7.2"
+      ~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:5: Warning: A newer version of androidx.compose:compose-bom than 2024.11.00 is available: 2026.09.00 [GradleDependency]
+composeBom = "2024.11.00"
+             ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:5: Warning: A newer version of androidx.compose:compose-bom than 2024.11.00 is available: 2026.09.00 [GradleDependency]
+composeBom = "2024.11.00"
+             ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:5: Warning: A newer version of androidx.compose:compose-bom than 2024.11.00 is available: 2026.09.00 [GradleDependency]
+composeBom = "2024.11.00"
+             ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:6: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.5 [GradleDependency]
+room = "2.6.1"
+       ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-exoplayer than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-exoplayer than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-exoplayer than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-ui than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-ui than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:8: Warning: A newer version of androidx.media3:media3-ui than 1.4.1 is available: 1.11.1 [GradleDependency]
+media3 = "1.4.1"
+         ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:10: Warning: A newer version of androidx.hilt:hilt-navigation-compose than 1.2.0 is available: 1.4.0 [GradleDependency]
+hiltNavigationCompose = "1.2.0"
+                        ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:10: Warning: A newer version of androidx.hilt:hilt-navigation-compose than 1.2.0 is available: 1.4.0 [GradleDependency]
+hiltNavigationCompose = "1.2.0"
+                        ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:10: Warning: A newer version of androidx.hilt:hilt-navigation-compose than 1.2.0 is available: 1.4.0 [GradleDependency]
+hiltNavigationCompose = "1.2.0"
+                        ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:12: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.1 [GradleDependency]
+coreKtx = "1.15.0"
+          ~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:12: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.1 [GradleDependency]
+coreKtx = "1.15.0"
+          ~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:12: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.1 [GradleDependency]
+coreKtx = "1.15.0"
+          ~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:13: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.7 is available: 2.11.0 [GradleDependency]
+lifecycle = "2.8.7"
+            ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:14: Warning: A newer version of androidx.activity:activity-compose than 1.9.3 is available: 1.13.0 [GradleDependency]
+activityCompose = "1.9.3"
+                  ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:14: Warning: A newer version of androidx.activity:activity-compose than 1.9.3 is available: 1.13.0 [GradleDependency]
+activityCompose = "1.9.3"
+                  ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:14: Warning: A newer version of androidx.activity:activity-compose than 1.9.3 is available: 1.13.0 [GradleDependency]
+activityCompose = "1.9.3"
+                  ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:15: Warning: A newer version of androidx.navigation:navigation-compose than 2.8.4 is available: 2.10.2 [GradleDependency]
+navigationCompose = "2.8.4"
+                    ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:15: Warning: A newer version of androidx.navigation:navigation-compose than 2.8.4 is available: 2.10.2 [GradleDependency]
+navigationCompose = "2.8.4"
+                    ~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\gradle\libs.versions.toml:15: Warning: A newer version of androidx.navigation:navigation-compose than 2.8.4 is available: 2.10.2 [GradleDependency]
+navigationCompose = "2.8.4"
+                    ~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 26. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:10: Warning: The resource R.string.custom_team appears to be unused [UnusedResources]
+    <string name="custom_team">Equipo Personalizado</string>
+            ~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:13: Warning: The resource R.string.cancel appears to be unused [UnusedResources]
+    <string name="cancel">Cancelar</string>
+            ~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:14: Warning: The resource R.string.delete appears to be unused [UnusedResources]
+    <string name="delete">Eliminar</string>
+            ~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:15: Warning: The resource R.string.edit appears to be unused [UnusedResources]
+    <string name="edit">Editar</string>
+            ~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:16: Warning: The resource R.string.share appears to be unused [UnusedResources]
+    <string name="share">Compartir</string>
+            ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:17: Warning: The resource R.string.generate_matchday appears to be unused [UnusedResources]
+    <string name="generate_matchday">Generar Jornada</string>
+            ~~~~~~~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:18: Warning: The resource R.string.pending appears to be unused [UnusedResources]
+    <string name="pending">PENDIENTE</string>
+            ~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:19: Warning: The resource R.string.completed appears to be unused [UnusedResources]
+    <string name="completed">COMPLETADO</string>
+            ~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:20: Warning: The resource R.string.vs appears to be unused [UnusedResources]
+    <string name="vs">vs</string>
+            ~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:21: Warning: The resource R.string.bye appears to be unused [UnusedResources]
+    <string name="bye">DESCANSO</string>
+            ~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:22: Warning: The resource R.string.matchday appears to be unused [UnusedResources]
+    <string name="matchday">Jornada %1$d</string>
+            ~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:24: Warning: The resource R.string.top_scorers appears to be unused [UnusedResources]
+    <string name="top_scorers">Máximos Goleadores</string>
+            ~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:25: Warning: The resource R.string.top_assisters appears to be unused [UnusedResources]
+    <string name="top_assisters">Máximos Asistidores</string>
+            ~~~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:26: Warning: The resource R.string.top_saves appears to be unused [UnusedResources]
+    <string name="top_saves">Máximos Atajadores</string>
+            ~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:27: Warning: The resource R.string.yellow_cards appears to be unused [UnusedResources]
+    <string name="yellow_cards">Tarjetas Amarillas</string>
+            ~~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:28: Warning: The resource R.string.red_cards appears to be unused [UnusedResources]
+    <string name="red_cards">Tarjetas Rojas</string>
+            ~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:29: Warning: The resource R.string.mvp appears to be unused [UnusedResources]
+    <string name="mvp">MVP del Partido</string>
+            ~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:30: Warning: The resource R.string.goals appears to be unused [UnusedResources]
+    <string name="goals">Goles</string>
+            ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:31: Warning: The resource R.string.assists appears to be unused [UnusedResources]
+    <string name="assists">Asistencias</string>
+            ~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:32: Warning: The resource R.string.saves appears to be unused [UnusedResources]
+    <string name="saves">Atajadas</string>
+            ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:33: Warning: The resource R.string.fouls appears to be unused [UnusedResources]
+    <string name="fouls">Faltas</string>
+            ~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:34: Warning: The resource R.string.rating appears to be unused [UnusedResources]
+    <string name="rating">Calificación</string>
+            ~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:35: Warning: The resource R.string.add_scorer appears to be unused [UnusedResources]
+    <string name="add_scorer">+ Agregar Goleador</string>
+            ~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:36: Warning: The resource R.string.add_assister appears to be unused [UnusedResources]
+    <string name="add_assister">+ Agregar Asistidor</string>
+            ~~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:37: Warning: The resource R.string.knockout appears to be unused [UnusedResources]
+    <string name="knockout">Eliminatorias</string>
+            ~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:38: Warning: The resource R.string.round_of_16 appears to be unused [UnusedResources]
+    <string name="round_of_16">Octavos de Final</string>
+            ~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:39: Warning: The resource R.string.quarter_finals appears to be unused [UnusedResources]
+    <string name="quarter_finals">Cuartos de Final</string>
+            ~~~~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:40: Warning: The resource R.string.semi_finals appears to be unused [UnusedResources]
+    <string name="semi_finals">Semifinales</string>
+            ~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:41: Warning: The resource R.string.final_match appears to be unused [UnusedResources]
+    <string name="final_match">Final</string>
+            ~~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:42: Warning: The resource R.string.first_leg appears to be unused [UnusedResources]
+    <string name="first_leg">Ida</string>
+            ~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:43: Warning: The resource R.string.second_leg appears to be unused [UnusedResources]
+    <string name="second_leg">Vuelta</string>
+            ~~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:44: Warning: The resource R.string.penalties appears to be unused [UnusedResources]
+    <string name="penalties">Penales</string>
+            ~~~~~~~~~~~~~~~~
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\values\strings.xml:45: Warning: The resource R.string.global_score appears to be unused [UnusedResources]
+    <string name="global_score">Global</string>
+            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+D:\Documentos\ProyectosC#\AppLiga\app\src\main\res\mipmap-anydpi-v26\ic_launcher_round.xml:2: Warning: The application adaptive roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+0 errors, 79 warnings

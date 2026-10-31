@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#FF121212</color>
+    <string name="add_assister">+ Agregar Asistidor</string>
+    <string name="add_scorer">+ Agregar Goleador</string>
+    <string name="add_team">Agregar Equipo</string>
+    <string name="app_name">La liga Alfa Bravo</string>
+    <string name="assists">Asistencias</string>
+    <string name="bye">DESCANSO</string>
+    <string name="cancel">Cancelar</string>
+    <string name="captain_name">Nombre del Capitán</string>
+    <string name="completed">COMPLETADO</string>
+    <string name="confirm">Confirmar</string>
+    <string name="custom_team">Equipo Personalizado</string>
+    <string name="delete">Eliminar</string>
+    <string name="draws">E</string>
+    <string name="edit">Editar</string>
+    <string name="final_match">Final</string>
+    <string name="first_leg">Ida</string>
+    <string name="fouls">Faltas</string>
+    <string name="generate_matchday">Generar Jornada</string>
+    <string name="global_score">Global</string>
+    <string name="goals">Goles</string>
+    <string name="knockout">Eliminatorias</string>
+    <string name="losses">P</string>
+    <string name="matchday">Jornada %1$d</string>
+    <string name="mvp">MVP del Partido</string>
+    <string name="nav_matches">Partidos</string>
+    <string name="nav_standings">Inicio</string>
+    <string name="nav_stats">Estadísticas</string>
+    <string name="nav_videos">Historial</string>
+    <string name="penalties">Penales</string>
+    <string name="pending">PENDIENTE</string>
+    <string name="pj">PJ</string>
+    <string name="pts">Pts</string>
+    <string name="quarter_finals">Cuartos de Final</string>
+    <string name="rating">Calificación</string>
+    <string name="red_cards">Tarjetas Rojas</string>
+    <string name="round_of_16">Octavos de Final</string>
+    <string name="saves">Atajadas</string>
+    <string name="search_teams">Buscar equipos…</string>
+    <string name="second_leg">Vuelta</string>
+    <string name="semi_finals">Semifinales</string>
+    <string name="share">Compartir</string>
+    <string name="standings">Posiciones</string>
+    <string name="team_name">Nombre del Equipo</string>
+    <string name="top_assisters">Máximos Asistidores</string>
+    <string name="top_saves">Máximos Atajadores</string>
+    <string name="top_scorers">Máximos Goleadores</string>
+    <string name="vs">vs</string>
+    <string name="wins">G</string>
+    <string name="yellow_cards">Tarjetas Amarillas</string>
+    <style name="Theme.LigaAlfaBravo" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">#FF121212</item>
+    </style>
+</resources>

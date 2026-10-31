@@ -1,0 +1,4 @@
+com.hograna.liga.test.app-androidTest-0 D:\Documentos\ProyectosC#\AppLiga\app\build\generated\res\resValues\androidTest\debug
+com.hograna.liga.test.app-mergeDebugAndroidTestResources-1 D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.hograna.liga.test.app-mergeDebugAndroidTestResources-2 D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.hograna.liga.test.app-debugAndroidTest-3 D:\Documentos\ProyectosC#\AppLiga\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
