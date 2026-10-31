@@ -19,9 +19,17 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +48,7 @@ import com.hograna.liga.R
 import com.hograna.liga.domain.model.StandingRow
 import com.hograna.liga.data.local.entity.MatchEntity
 import com.hograna.liga.data.local.entity.TeamEntity
+import com.hograna.liga.ui.components.StreakBadgesRow
 import com.hograna.liga.ui.theme.Background
 import com.hograna.liga.ui.theme.CardBackground
 import com.hograna.liga.ui.theme.GoldAccent
@@ -53,6 +62,14 @@ import com.hograna.liga.ui.theme.TextSecondary
 @Composable
 fun StandingsScreen(viewModel: StandingsViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(uiState.shareError) {
+        uiState.shareError?.let { message ->
+            snackbarHostState.showSnackbar(message)
+            viewModel.dismissShareError()
+        }
+    }
 
     if (uiState.isLoading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -61,77 +78,105 @@ fun StandingsScreen(viewModel: StandingsViewModel = hiltViewModel()) {
         return
     }
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Background)
-            .padding(horizontal = 16.dp)
-    ) {
-        item {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Posiciones",
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                color = TextPrimary
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-        }
-
-        if (uiState.standings.size >= 3) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Background)
+                .padding(horizontal = 16.dp)
+        ) {
             item {
-                PodiumSection(standings = uiState.standings.take(3))
-                Spacer(modifier = Modifier.height(16.dp))
-            }
-        } else if (uiState.standings.isEmpty()) {
-            item {
-                Box(
-                    Modifier
+                Row(
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 40.dp),
-                    contentAlignment = Alignment.Center
+                        .padding(top = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Agrega equipos para ver las posiciones",
-                        color = TextDisabled,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-        }
-
-        if (uiState.currentMatchday > 0) {
-            item {
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    Text(
-                        "Jornada actual · ${uiState.currentMatchday}",
-                        fontSize = 16.sp,
+                        text = "Posiciones",
+                        fontSize = 22.sp,
                         fontWeight = FontWeight.Bold,
-                        color = GreenNeon,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        color = TextPrimary
                     )
-                    uiState.currentMatches.forEach { summary ->
-                        MatchdaySummaryRow(
-                            match = summary.match,
-                            homeTeam = summary.homeTeam,
-                            awayTeam = summary.awayTeam
+                    IconButton(
+                        onClick = viewModel::shareTopTen,
+                        enabled = uiState.standings.isNotEmpty()
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Share,
+                            contentDescription = stringResource(R.string.share_standings),
+                            tint = GreenNeon
                         )
                     }
-                    Spacer(modifier = Modifier.height(12.dp))
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
+            if (uiState.standings.size >= 3) {
+                item {
+                    PodiumSection(standings = uiState.standings.take(3))
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
+            } else if (uiState.standings.isEmpty()) {
+                item {
+                    Box(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 40.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "Agrega equipos para ver las posiciones",
+                            color = TextDisabled,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
+
+            if (uiState.currentMatchday > 0) {
+                item {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Text(
+                            "Jornada actual · ${uiState.currentMatchday}",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = GreenNeon,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                        uiState.currentMatches.forEach { summary ->
+                            MatchdaySummaryRow(
+                                match = summary.match,
+                                homeTeam = summary.homeTeam,
+                                awayTeam = summary.awayTeam
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(12.dp))
+                    }
+                }
+            }
+
+            if (uiState.standings.isNotEmpty()) {
+                item {
+                    StandingsTableHeader()
+                }
+                itemsIndexed(uiState.standings, key = { _, row -> row.teamId }) { index, row ->
+                    StandingsRow(
+                        position = index + 1,
+                        row = row,
+                        streak = uiState.streaks[row.teamId].orEmpty().takeLast(5)
+                    )
+                }
+            }
+
+            item { Spacer(modifier = Modifier.height(24.dp)) }
         }
 
-        if (uiState.standings.isNotEmpty()) {
-            item {
-                StandingsTableHeader()
-            }
-            itemsIndexed(uiState.standings, key = { _, row -> row.teamId }) { index, row ->
-                StandingsRow(position = index + 1, row = row)
-            }
-        }
-
-        item { Spacer(modifier = Modifier.height(24.dp)) }
+        SnackbarHost(
+            hostState = snackbarHostState,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        )
     }
 }
 
@@ -294,31 +339,43 @@ private fun StandingsTableHeader() {
         modifier = Modifier
             .fillMaxWidth()
             .background(SurfaceVariant, RoundedCornerShape(8.dp))
-            .padding(horizontal = 12.dp, vertical = 8.dp),
+            .padding(horizontal = 4.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text("#", fontSize = 12.sp, color = TextSecondary, modifier = Modifier.width(24.dp))
+        Text("#", fontSize = 11.sp, color = TextSecondary, modifier = Modifier.width(22.dp))
+        Spacer(modifier = Modifier.width(56.dp))
         Text(
             stringResource(R.string.standings),
-            fontSize = 12.sp,
+            fontSize = 11.sp,
             color = TextSecondary,
             modifier = Modifier.weight(1f)
         )
         listOf(R.string.pj, R.string.wins, R.string.draws, R.string.losses, R.string.pts).forEach {
             Text(
                 stringResource(it),
-                fontSize = 12.sp,
+                fontSize = 11.sp,
                 color = TextSecondary,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.width(30.dp)
+                modifier = Modifier.width(24.dp)
             )
         }
+        Text(
+            text = stringResource(R.string.last_five),
+            fontSize = 9.sp,
+            color = TextSecondary,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.width(87.dp)
+        )
     }
     Spacer(modifier = Modifier.height(4.dp))
 }
 
 @Composable
-private fun StandingsRow(position: Int, row: StandingRow) {
+private fun StandingsRow(
+    position: Int,
+    row: StandingRow,
+    streak: List<com.hograna.liga.domain.model.StreakBadgeType>
+) {
     val bgColor = when (position) {
         1 -> GoldAccent.copy(alpha = 0.06f)
         2, 3 -> GreenNeon.copy(alpha = 0.04f)
@@ -329,14 +386,14 @@ private fun StandingsRow(position: Int, row: StandingRow) {
             .fillMaxWidth()
             .padding(vertical = 2.dp)
             .background(bgColor, RoundedCornerShape(6.dp))
-            .padding(horizontal = 12.dp, vertical = 6.dp),
+            .padding(horizontal = 4.dp, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             "$position",
             fontSize = 12.sp,
             color = TextSecondary,
-            modifier = Modifier.width(24.dp)
+            modifier = Modifier.width(22.dp)
         )
         AsyncImage(
             model = row.crestUri,
@@ -346,7 +403,7 @@ private fun StandingsRow(position: Int, row: StandingRow) {
                 .clip(CircleShape),
             contentScale = ContentScale.Fit
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = row.teamName,
             fontSize = 13.sp,
@@ -360,28 +417,28 @@ private fun StandingsRow(position: Int, row: StandingRow) {
             fontSize = 13.sp,
             color = TextSecondary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(30.dp)
+            modifier = Modifier.width(24.dp)
         )
         Text(
             "${row.won}",
             fontSize = 13.sp,
             color = TextSecondary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(30.dp)
+            modifier = Modifier.width(24.dp)
         )
         Text(
             "${row.drawn}",
             fontSize = 13.sp,
             color = TextSecondary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(30.dp)
+            modifier = Modifier.width(24.dp)
         )
         Text(
             "${row.lost}",
             fontSize = 13.sp,
             color = TextSecondary,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(30.dp)
+            modifier = Modifier.width(24.dp)
         )
         Text(
             "${row.points}",
@@ -389,7 +446,12 @@ private fun StandingsRow(position: Int, row: StandingRow) {
             fontWeight = FontWeight.Bold,
             color = GreenNeon,
             textAlign = TextAlign.Center,
-            modifier = Modifier.width(30.dp)
+            modifier = Modifier.width(24.dp)
+        )
+        StreakBadgesRow(
+            results = streak,
+            modifier = Modifier.width(87.dp),
+            showEmptySlots = true
         )
     }
 }

@@ -21,6 +21,8 @@
     <string name="bye">DESCANSO</string>
     <string name="matchday">Jornada %1$d</string>
     <string name="standings">Posiciones</string>
+    <string name="share_standings">Compartir tabla de posiciones</string>
+    <string name="last_five">Últimos 5</string>
     <string name="top_scorers">Máximos Goleadores</string>
     <string name="top_assisters">Máximos Asistidores</string>
     <string name="top_saves">Máximos Atajadores</string>

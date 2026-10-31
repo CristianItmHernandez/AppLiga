@@ -23,7 +23,7 @@
   - `standingsList: List<TeamStandingRow>` (recortada automáticamente con `.take(10)`).
   - `streaksMap: Map<Long, List<StreakBadgeType>>` (los últimos 5 resultados de cada uno de esos 10 equipos).
 - **Procesamiento Off-Screen (Zero-Bloat)**:
-  1. Se ejecuta en `Dispatchers.Default`.
+  1. Se ejecuta fuera del hilo principal (`Dispatchers.IO`) para cargar escudos y escribir el archivo sin bloquear la interfaz.
   2. Precarga los bitmaps de los escudos de los primeros 10 equipos mediante **Coil** (`ImageLoader`) escalados a $64 \times 64\text{ px}$ para no saturar la memoria RAM.
   3. Renderiza el componente `ShareableStandingsCard` o dibuja sobre un `Bitmap` temporal (`Bitmap.createBitmap(1080, 1440, Bitmap.Config.ARGB_8888)`).
   4. Guarda el archivo en `context.cacheDir/shared_standings_top10.png` (sobrescribiendo el anterior para no acumular basura en almacenamiento) y lanza el `Intent` con `FileProvider`.
@@ -32,7 +32,7 @@
 ### B. Componente Visual (`ShareableStandingsCard.kt`)
 - Ubicación: `ui/standings/ShareableStandingsCard.kt`
 - **Estructura Visual**:
-  - **Header**: Icono de la Copa de Champions + título **"La liga Alfa Bravo - Tabla Oficial (Top 10)"**.
+  - **Header**: Icono de trofeo + título **"La liga Alfa Bravo - Tabla Oficial (Top 10)"**.
   - **Podio Top 3**: Mismo diseño visual de la pantalla principal.
   - **Filas 1 a 10**: Fondo oscuro (`#121212` / `#1E1E1E`), divisores sutiles, escudo circular del equipo, nombre truncado limpiamente a 1 línea, estadísticas (`PJ`, `G`, `E`, `P`), puntos en verde neón (`#2ECC71`) y la fila `StreakBadgesRow` con los últimos 5 partidos.
 
@@ -63,6 +63,8 @@ data class StandingWithStreakUiModel(
 ---
 
 ## 4. Tareas de Implementación (Checklist para el Agente)
-- [ ] **Tarea S.1**: Crear `ShareableStandingsCard.kt` en `ui/standings/` replicando el diseño exacto de la página de inicio (Podio Top 3 + Tabla con logo, estadísticas, puntos y rachas de los últimos 5 partidos) restringido a `.take(10)`.
-- [ ] **Tarea S.2**: Implementar `ShareStandingsGraphicUseCase.kt` en `domain/usecase/` que tome los primeros 10 equipos de la tabla actual, resuelva sus escudos con Coil en tamaño reducido, exporte el PNG a `cacheDir` y lance el `Intent.ACTION_SEND` con `FileProvider`.
-- [ ] **Tarea S.3**: Añadir el botón de **Compartir Tabla** en la cabecera de `StandingsScreen.kt` (Apartado 1) conectado al `ViewModel` y verificar que la imagen compartida muestre únicamente el Top 10 con sus logos, puntos y rachas.
+- [x] **Tarea S.1**: Implementar la tarjeta visual de compartir (Compose o Canvas) con Podio Top 3 + Tabla con logo, estadísticas, puntos y rachas de los últimos 5 partidos, restringida a `.take(10)`.
+- [x] **Tarea S.2**: Implementar `ShareStandingsGraphicUseCase.kt` en `domain/usecase/` que tome los primeros 10 equipos de la tabla actual, resuelva sus escudos con Coil en tamaño reducido, exporte el PNG a `cacheDir` y lance el `Intent.ACTION_SEND` con `FileProvider`.
+- [x] **Tarea S.3**: Añadir el botón de **Compartir Tabla** en la cabecera de `StandingsScreen.kt` (Apartado 1) conectado al `ViewModel`; el payload y el render limitan la imagen al Top 10.
+
+La compilación y lint fueron verificados con `assembleDebug`. La prueba visual en dispositivo/emulador queda pendiente porque `adb` no está disponible en el entorno de implementación.

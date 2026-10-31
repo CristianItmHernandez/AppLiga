@@ -8,7 +8,11 @@ import com.hograna.liga.data.local.dao.TeamDao
 import com.hograna.liga.data.local.entity.MatchEntity
 import com.hograna.liga.data.local.entity.TeamEntity
 import com.hograna.liga.domain.model.StandingRow
+import com.hograna.liga.domain.model.StreakBadgeType
+import com.hograna.liga.domain.usecase.GetTeamStreaksUseCase
+import com.hograna.liga.domain.usecase.ShareStandingsGraphicUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,8 +22,10 @@ import javax.inject.Inject
 
 data class StandingsUiState(
     val standings: List<StandingRow> = emptyList(),
+    val streaks: Map<Long, List<StreakBadgeType>> = emptyMap(),
     val currentMatchday: Int = 0,
     val currentMatches: List<MatchSummary> = emptyList(),
+    val shareError: String? = null,
     val isLoading: Boolean = true
 )
 
@@ -33,7 +39,9 @@ data class MatchSummary(
 class StandingsViewModel @Inject constructor(
     private val standingsDao: StandingsDao,
     private val matchDao: MatchDao,
-    private val teamDao: TeamDao
+    private val teamDao: TeamDao,
+    private val getTeamStreaks: GetTeamStreaksUseCase,
+    private val shareStandingsGraphic: ShareStandingsGraphicUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(StandingsUiState())
@@ -50,6 +58,7 @@ class StandingsViewModel @Inject constructor(
                 val teamsById = teams.associateBy { it.id }
                 StandingsUiState(
                     standings = standings,
+                    streaks = getTeamStreaks(matches),
                     currentMatchday = latestMatchday,
                     currentMatches = matches
                         .filter { it.matchdayOrRound == latestMatchday }
@@ -57,8 +66,28 @@ class StandingsViewModel @Inject constructor(
                     isLoading = false
                 )
             }.collect { state ->
-                _uiState.value = state
+                _uiState.value = state.copy(shareError = _uiState.value.shareError)
             }
         }
+    }
+
+    fun shareTopTen() {
+        val state = _uiState.value
+        viewModelScope.launch {
+            try {
+                shareStandingsGraphic.share(state.standings, state.streaks)
+                _uiState.value = _uiState.value.copy(shareError = null)
+            } catch (exception: CancellationException) {
+                throw exception
+            } catch (exception: Exception) {
+                _uiState.value = _uiState.value.copy(
+                    shareError = exception.message ?: "No se pudo compartir la tabla"
+                )
+            }
+        }
+    }
+
+    fun dismissShareError() {
+        _uiState.value = _uiState.value.copy(shareError = null)
     }
 }
